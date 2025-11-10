@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHub - Online Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-container {
+            background: white;
+            border-radius: 50px;
+            padding: 5px;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .search-box {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #c0392b;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Categories Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 30px;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #3498db;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #3498db;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .category-icon {
+            font-size: 50px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .category-card h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .category-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        /* Featured Courses */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .course-image {
+            height: 160px;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .course-info {
+            padding: 20px;
+        }
+        
+        .course-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-size: 18px;
+            height: 50px;
+            overflow: hidden;
+        }
+        
+        .course-instructor {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .instructor-icon {
+            margin-right: 5px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .enroll-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .enroll-btn:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .categories-grid,
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .categories-grid,
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .search-container {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            
+            .search-box {
+                border-radius: 10px 10px 0 0;
+            }
+            
+            .search-btn {
+                border-radius: 0 0 10px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                LearnHub
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course-detail.html">Courses</a></li>
+                    <li><a href="instructor-profile.html">Instructors</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="enrollment-form.html">Enroll</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>शिक्षा से समृद्धि तक</h1>
+            <h1>(From Education to Prosperity)</h1>
+            <p>Discover your potential with India's leading online learning platform. Learn from expert instructors and advance your career.</p>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="What would you like to learn today?">
+                <button class="search-btn">Search Courses</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Courses</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Instructors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container">
+        <h2 class="section-title">Explore Learning Categories</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">💻</div>
+                <h3>Technology & Programming</h3>
+                <p>Web Development, Data Science, AI, Mobile Apps</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">📊</div>
+                <h3>Business & Management</h3>
+                <p>Marketing, Finance, Entrepreneurship, Leadership</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🎨</div>
+                <h3>Creative Arts</h3>
+                <p>Graphic Design, Photography, Video Editing, Music</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🔬</div>
+                <h3>Science & Engineering</h3>
+                <p>Mathematics, Physics, Electronics, Civil Engineering</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🗣️</div>
+                <h3>Languages & Communication</h3>
+                <p>English, Hindi, Public Speaking, Creative Writing</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🧘</div>
+                <h3>Health & Wellness</h3>
+                <p>Yoga, Nutrition, Mental Health, Fitness</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="container">
+        <h2 class="section-title">Featured Courses</h2>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-image">Full Stack Web Development</div>
+                <div class="course-info">
+                    <div class="course-title">Complete Web Development with MERN Stack</div>
+                    <div class="course-instructor">
+                        <span class="instructor-icon">👨‍🏫</span>
+                        By Rajesh Kumar
+                    </div>
+                    <div class="course-meta">
+                        <span>⭐ 4.8 (2,450 reviews)</span>
+                        <span>⏱️ 48 hours</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">Data Science</div>
+                <div class="course-info">
+                    <div class="course-title">Python for Data Science & Machine Learning</div>
+                    <div class="course-instructor">
+                        <span class="instructor-icon">👩‍🏫</span>
+                        By Priya Sharma
+                    </div>
+                    <div class="course-meta">
+                        <span>⭐ 4.7 (1,890 reviews)</span>
+                        <span>⏱️ 42 hours</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">Digital Marketing</div>
+                <div class="course-info">
+                    <div class="course-title">Digital Marketing Mastery - SEO, Social Media, Ads</div>
+                    <div class="course-instructor">
+                        <span class="instructor-icon">👨‍🏫</span>
+                        By Amit Patel
+                    </div>
+                    <div class="course-meta">
+                        <span>⭐ 4.6 (1,560 reviews)</span>
+                        <span>⏱️ 36 hours</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">Mobile Development</div>
+                <div class="course-info">
+                    <div class="course-title">Android App Development with Kotlin</div>
+                    <div class="course-instructor">
+                        <span class="instructor-icon">👩‍🏫</span>
+                        By Anjali Singh
+                    </div>
+                    <div class="course-meta">
+                        <span>⭐ 4.5 (1,230 reviews)</span>
+                        <span>⏱️ 40 hours</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">Finance</div>
+                <div class="course-info">
+                    <div class="course-title">Stock Market Investing & Financial Planning</div>
+                    <div class="course-instructor">
+                        <span class="instructor-icon">👨‍🏫</span>
+                        By Vikram Mehta
+                    </div>
+                    <div class="course-meta">
+                        <span>⭐ 4.8 (980 reviews)</span>
+                        <span>⏱️ 30 hours</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">Yoga & Wellness</div>
+                <div class="course-info">
+                    <div class="course-title">Yoga for Beginners - Mind & Body Wellness</div>
+                    <div class="course-instructor">
+                        <span class="instructor-icon">👩‍🏫</span>
+                        By Divya Nair
+                    </div>
+                    <div class="course-meta">
+                        <span>⭐ 4.9 (1,750 reviews)</span>
+                        <span>⏱️ 24 hours</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LearnHub</h3>
+                    <p>India's premier online learning platform dedicated to providing quality education to everyone, everywhere.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="course-detail.html">Browse Courses</a></li>
+                        <li><a href="instructor-profile.html">Our Instructors</a></li>
+                        <li><a href="enrollment-form.html">Enroll Now</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: info@learnhub.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Address: 123 Education Street, Mumbai, India</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 LearnHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
