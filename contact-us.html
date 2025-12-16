@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - LearnHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: rgb(119, 234, 249);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul li a.active {
+            color: #77eaf9;
+            font-weight: bold;
+        }
+        
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(44, 62, 80, 0.9)), url('assets/images/contact-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .contact-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .contact-hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* Contact Container */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Contact Form */
+        .contact-form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form-container h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Contact Info */
+        .contact-info-container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info-container h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2ecc71;
+            display: inline-block;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-icon {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .info-content h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .info-content p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .info-content a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .info-content a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        /* Map Section */
+        .map-container {
+            margin: 40px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .map-placeholder {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Messages */
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            margin: 60px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .faq-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .faq-question.active + .faq-answer {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+            
+            .contact-hero p {
+                font-size: 18px;
+            }
+            
+            .contact-form-container,
+            .contact-info-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="assets/images/logo.jpeg" alt="LearnHub Logo" class="logo-icon">
+                LearnHub
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course-detail.html">Courses</a></li>
+                    <li><a href="instructor-profile.html">Instructors</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="contact-us.html" class="active">Contact Us</a></li>
+                    <li><a href="#" id="logoutBtn" style="color: #ff6b6b; display: none;">Logout</a></li>
+                    <li><a href="login.html" id="loginBtn">Login</a></li>
+                    <li><a href="signup.html" id="signupBtn">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>We're here to help! Contact us with any questions, feedback, or inquiries about our courses.</p>
+        </div>
+    </section>
+
+    <!-- Contact Container -->
+    <div class="container">
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <h2>Send us a Message</h2>
+                
+                <div id="messageContainer">
+                    <!-- Messages will appear here -->
+                </div>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="Course Inquiry">Course Inquiry</option>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Billing Issue">Billing Issue</option>
+                            <option value="Feedback">Feedback</option>
+                            <option value="Partnership">Partnership</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="contact-info-container">
+                <h2>Contact Information</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        📍
+                    </div>
+                    <div class="info-content">
+                        <h3>Our Location</h3>
+                        <p>
+                            LearnHub Education Center<br>
+                            123 Education Street<br>
+                            Mumbai, Maharashtra 400001<br>
+                            India
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        📞
+                    </div>
+                    <div class="info-content">
+                        <h3>Phone Numbers</h3>
+                        <p>
+                            <strong>Support:</strong> +91 98765 43210<br>
+                            <strong>Sales:</strong> +91 98765 43211<br>
+                            <strong>Emergency:</strong> +91 98765 43212
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        ✉️
+                    </div>
+                    <div class="info-content">
+                        <h3>Email Addresses</h3>
+                        <p>
+                            <strong>General:</strong> <a href="mailto:info@learnhub.com">info@learnhub.com</a><br>
+                            <strong>Support:</strong> <a href="mailto:support@learnhub.com">support@learnhub.com</a><br>
+                            <strong>Courses:</strong> <a href="mailto:courses@learnhub.com">courses@learnhub.com</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        ⏰
+                    </div>
+                    <div class="info-content">
+                        <h3>Working Hours</h3>
+                        <p>
+                            <strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM<br>
+                            <strong>Saturday:</strong> 10:00 AM - 5:00 PM<br>
+                            <strong>Sunday:</strong> 10:00 AM - 2:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="map-container">
+            <div class="map-placeholder">
+                <div style="text-align: center;">
+                    <div style="font-size: 48px; margin-bottom: 20px;">🗺️</div>
+                    <p>Map Location</p>
+                    <p style="font-size: 14px; font-weight: normal;">(Interactive map would appear here)</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I enroll in a course?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    You can enroll in any course by visiting the course detail page and clicking the "Enroll Now" button. You need to be logged in to enroll. If you don't have an account, you can create one for free.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What payment methods do you accept?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We accept all major credit/debit cards, net banking, UPI payments, and also offer EMI options for select courses. All payments are secured through SSL encryption.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I get a refund?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we offer a 30-day money-back guarantee for all courses. If you're not satisfied with the course within 30 days of enrollment, you can request a full refund.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I access course materials?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Once enrolled, you can access all course materials from your dashboard. Videos, assignments, and resources are available 24/7 on our platform. You can also download some materials for offline access.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer certificates?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, upon successful completion of any course (scoring above 70% in assessments), you'll receive a digital certificate that you can download and share on LinkedIn or print for your records.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LearnHub</h3>
+                    <p>India's premier online learning platform dedicated to providing quality education to everyone, everywhere.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="LinkedIn">in</a>
+                        <a href="#" title="YouTube">▶️</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="course-detail.html">Browse Courses</a></li>
+                        <li><a href="instructor-profile.html">Our Instructors</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest course updates and educational tips.</p>
+                    <form style="margin-top: 15px;">
+                        <input type="email" placeholder="Your email" style="padding: 10px; width: 100%; border-radius: 5px; border: none;">
+                        <button type="submit" style="margin-top: 10px; padding: 10px 20px; background: white; color: #3498db; border: none; border-radius: 5px; cursor: pointer;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 LearnHub. All rights reserved.</p>
+                <p style="margin-top: 10px;">Contact: info@learnhub.com | +91 98765 43210</p>
+            </div>
+        </div>
+    </footer>
+
+  
+    <script>
+        // Debug mode
+        let debugMode = false;
+        
+        function toggleDebug() {
+            debugMode = !debugMode;
+            document.getElementById('debugInfo').style.display = debugMode ? 'block' : 'none';
+            updateDebug('Debug mode: ' + (debugMode ? 'ON' : 'OFF'));
+        }
+        
+        function updateDebug(message) {
+            if (!debugMode) return;
+            const debugContent = document.getElementById('debugContent');
+            const timestamp = new Date().toLocaleTimeString();
+            debugContent.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+        }
+        
+        // API Configuration
+        const API_BASE = 'http://localhost:3001';
+        
+        // Test API connection on load
+        window.addEventListener('load', async () => {
+            updateDebug('Page loaded');
+            
+            try {
+                const response = await fetch(`${API_BASE}/contacts`);
+                if (response.ok) {
+                    const data = await response.json();
+                    updateDebug(`API Connected! Found ${data.length} contacts`);
+                } else {
+                    updateDebug(`API Error: ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                updateDebug(`API Connection Failed: ${error.message}`);
+            }
+            
+            updateNavigation();
+        });
+        
+        // Update navigation based on auth state
+        function updateNavigation() {
+            const currentUser = localStorage.getItem('currentUser');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            
+            if (currentUser) {
+                if (logoutBtn) logoutBtn.style.display = 'block';
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (signupBtn) signupBtn.style.display = 'none';
+                
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('currentUser');
+                    window.location.href = 'index.html';
+                });
+            } else {
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (loginBtn) loginBtn.style.display = 'block';
+                if (signupBtn) signupBtn.style.display = 'block';
+            }
+        }
+        
+        // Show message function
+        function showMessage(type, text) {
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = `
+                <div class="message ${type}">
+                    ${text}
+                </div>
+            `;
+            
+            updateDebug(`Message shown: ${type} - ${text}`);
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageContainer.innerHTML = '';
+                }, 5000);
+            }
+        }
+        
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            updateDebug('Form submitted');
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || 'Not provided',
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value.trim(),
+                submittedAt: new Date().toISOString(),
+                status: 'new'
+            };
+            
+            updateDebug(`Form data: ${JSON.stringify(formData)}`);
+            
+            // Validate form
+            if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+                showMessage('error', 'Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                showMessage('error', 'Please enter a valid email address.');
+                return;
+            }
+            
+            // Disable submit button
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            try {
+                updateDebug(`Sending POST request to ${API_BASE}/contacts`);
+                
+                // Send data to API
+                const response = await fetch(`${API_BASE}/contacts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                updateDebug(`Response status: ${response.status} ${response.statusText}`);
+                
+                if (response.ok) {
+                    const responseData = await response.json();
+                    updateDebug(`Success! Response: ${JSON.stringify(responseData)}`);
+                    
+                    // Success
+                    showMessage('success', 'Thank you! Your message has been sent successfully. We will get back to you within 24 hours.');
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Store in localStorage for demo
+                    const contacts = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                    contacts.push({
+                        ...formData,
+                        localId: Date.now().toString()
+                    });
+                    localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
+                    
+                    updateDebug(`Stored locally. Total local submissions: ${contacts.length}`);
+                    
+                } else {
+                    const errorText = await response.text();
+                    updateDebug(`Server error response: ${errorText}`);
+                    throw new Error(`Server responded with ${response.status}: ${errorText}`);
+                }
+                
+            } catch (error) {
+                updateDebug(`Error: ${error.message}`);
+                console.error('Error submitting form:', error);
+                
+                // Try alternative: store in localStorage only
+                try {
+                    const contacts = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                    contacts.push({
+                        ...formData,
+                        localId: Date.now().toString(),
+                        error: 'API failed, stored locally'
+                    });
+                    localStorage.setItem('contactSubmissions', JSON.stringify(contacts));
+                    
+                    updateDebug(`Stored locally due to API failure. Total: ${contacts.length}`);
+                    showMessage('success', 'Message saved locally. API is down but we have your message.');
+                    
+                } catch (localError) {
+                    showMessage('error', 'Sorry, there was an error sending your message. Please try again later.');
+                }
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const isActive = this.classList.contains('active');
+                
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.querySelector('span').textContent = '+';
+                });
+                
+                if (!isActive) {
+                    this.classList.add('active');
+                    this.querySelector('span').textContent = '−';
+                }
+            });
+        });
+        
+        // Test API button
+        async function testAPI() {
+            updateDebug('Testing API connection...');
+            
+            try {
+                const response = await fetch(`${API_BASE}/contacts`);
+                const data = await response.json();
+                updateDebug(`API Test: ${response.status} - Found ${data.length} contacts`);
+                alert(`API Test: ${response.status} - Found ${data.length} contacts`);
+            } catch (error) {
+                updateDebug(`API Test Failed: ${error.message}`);
+                alert(`API Test Failed: ${error.message}`);
+            }
+        }
+        
+        // View local submissions
+        function viewLocalSubmissions() {
+            const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+            updateDebug(`Local submissions: ${JSON.stringify(submissions)}`);
+            alert(`Local submissions: ${submissions.length}\nCheck console for details.`);
+            console.log('Local submissions:', submissions);
+        }
+        // Handle form submission
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    updateDebug('Form submitted');
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim() || 'Not provided',
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value.trim()
+    };
+    
+    updateDebug(`Form data: ${JSON.stringify(formData)}`);
+    
+    // Validate form
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+        showMessage('error', 'Please fill in all required fields.');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+        showMessage('error', 'Please enter a valid email address.');
+        return;
+    }
+    
+    // Disable submit button
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    // Try API first
+    let apiSuccess = false;
+    
+    try {
+        updateDebug(`Testing API connection to ${API_BASE}/contacts`);
+        
+        // First test if API is accessible
+        const testResponse = await fetch(`${API_BASE}/contacts`);
+        updateDebug(`API test response: ${testResponse.status}`);
+        
+        if (testResponse.ok) {
+            // API is working, send the data
+            const contactData = {
+                ...formData,
+                submittedAt: new Date().toISOString(),
+                status: 'new'
+            };
+            
+            updateDebug(`Sending POST request with data: ${JSON.stringify(contactData)}`);
+            
+            const response = await fetch(`${API_BASE}/contacts`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(contactData)
+            });
+            
+            updateDebug(`POST response status: ${response.status}`);
+            
+            if (response.ok) {
+                apiSuccess = true;
+                const responseData = await response.json();
+                updateDebug(`API Success! Response: ${JSON.stringify(responseData)}`);
+                
+                showMessage('success', 'Thank you! Your message has been sent successfully. We will get back to you within 24 hours.');
+                
+                // Also store in localStorage for backup
+                storeInLocalStorage(contactData);
+                
+            } else {
+                const errorText = await response.text();
+                updateDebug(`API Error: ${errorText}`);
+                throw new Error(`API responded with ${response.status}`);
+            }
+        } else {
+            throw new Error('API test failed');
+        }
+        
+    } catch (apiError) {
+        updateDebug(`API failed: ${apiError.message}`);
+        
+        // API failed, use localStorage as fallback
+        try {
+            const contactData = {
+                ...formData,
+                submittedAt: new Date().toISOString(),
+                status: 'new',
+                id: 'local_' + Date.now()
+            };
+            
+            storeInLocalStorage(contactData);
+            showMessage('success', 'Message saved! (API unavailable, but we have your message locally)');
+            
+        } catch (localError) {
+            console.error('Local storage error:', localError);
+            showMessage('error', 'Sorry, there was an error saving your message. Please try again.');
+        }
+    } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+        
+        // Reset form if successful
+        if (apiSuccess) {
+            document.getElementById('contactForm').reset();
+        }
+    }
+});
+
+// Store in localStorage
+function storeInLocalStorage(contactData) {
+    try {
+        // Get existing submissions
+        const key = 'learnhub_contact_submissions';
+        let submissions = JSON.parse(localStorage.getItem(key) || '[]');
+        
+        // Add new submission
+        submissions.push(contactData);
+        
+        // Save back to localStorage
+        localStorage.setItem(key, JSON.stringify(submissions));
+        
+        updateDebug(`Stored in localStorage. Total: ${submissions.length}`);
+        console.log('Contact saved to localStorage:', contactData);
+        
+        return true;
+    } catch (error) {
+        updateDebug(`Local storage error: ${error.message}`);
+        throw error;
+    }
+}
+    </script>
+</body>
+</html>

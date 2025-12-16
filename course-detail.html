@@ -27,7 +27,7 @@
 
         /* Header */
         header {
-            background-color: #3498db;
+              background: linear-gradient(135deg, #3498db, #2c3e50);
             padding: 1em ;
             position: sticky;
             top: 0;
@@ -38,16 +38,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            
+            
         }
         .logo {
-            color: white;
+            color: rgb(18, 9, 79);
             font-size: 1.5rem;
             font-weight: bold;
+             display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .logo-icon{
+          width: 70px;
+          height: 70px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
+            
         }
 
         nav ul li {
@@ -55,14 +67,14 @@
         }
 
         nav ul li a {
-            color: white;
+            color: rgb(245, 242, 242);
             text-decoration: none;
             padding: 0.4em 0.8em;
         }
 
         nav ul li a:hover {
-            background-color: #2980b9;
-            border-radius: 0.3em;
+            color: #88b7d7;
+            
         }
 
         /* Course Header */
@@ -90,7 +102,7 @@
         }
 
         .enroll-btn {
-            background-color: #00b894;
+            background-color: #061a51;
             color: white;
             border: none;
             padding: 0.6em 1.4em;
@@ -100,7 +112,7 @@
         }
 
         .enroll-btn:hover {
-            background-color: #019970;
+            background-color: #45bfb9;
         }
 
         /* Layout */
@@ -217,7 +229,7 @@
 
         /* Footer */
         footer {
-            background-color: #34495e;
+           background: linear-gradient(135deg, #3498db, #2c3e50);
             color: white;
             padding: 3vh 0;
             text-align: center;
@@ -248,14 +260,15 @@
 <body>
     <header>
         <div class="container nav-container">
-            <div class="logo">LearnHub</div>
+            <div class="logo"><img src="assets/images/logo.jpeg" alt="logo" class="logo-icon">LearnHub</div>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="course-detail.html">Courses</a></li>
                     <li><a href="instructor-profile.html">Instructors</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="enrollment-form.html">Enroll</a></li>
+                    <!-- <li><a href="enrollment-form.html">Enroll</a></li> -->
+                     <li><a href="contact-us.html">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -375,5 +388,158 @@
             <p>Contact: info@learnhub.com | +1 234 567 890</p>
         </div>
     </footer>
+    <script src="enrollment-service.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Check authentication
+        const user = enrollmentService.getCurrentUser();
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        // Update navigation
+        updateNavigation();
+        
+        // Setup enrollment button
+        setupEnrollmentButton();
+        
+        // Load course data
+        await loadCourseData();
+        
+        // Check if already enrolled
+        await checkIfEnrolled();
+    });
+
+    function updateNavigation() {
+        const nav = document.querySelector('nav ul');
+        if (!nav) return;
+        
+        nav.innerHTML = `
+            <li><a href="index.html">Home</a></li>
+            <li><a href="course-detail.html" style="color: #77eaf9;">Courses</a></li>
+            <li><a href="instructor-profile.html">Instructors</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="enrollment-form.html">Enroll</a></li>
+            <li><a href="#" onclick="logout()" style="color: #ff6b6b;">Logout</a></li>
+        `;
+    }
+
+    async function loadCourseData() {
+        try {
+            // Get course ID from URL or use default
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('course') || 'web-dev-bootcamp';
+            
+            const course = await enrollmentService.getCourseById(courseId);
+            if (course) {
+                // Update course title
+                const titleElement = document.querySelector('.course-title');
+                if (titleElement) {
+                    titleElement.textContent = course.title;
+                }
+                
+                // Update course description
+                const descriptionElement = document.querySelector('.course-header p');
+                if (descriptionElement) {
+                    descriptionElement.textContent = course.description;
+                }
+                
+                // Update course meta
+                const metaElement = document.querySelector('.course-meta');
+                if (metaElement) {
+                    metaElement.innerHTML = `
+                        <span>⭐ ${course.rating} (${course.students.toLocaleString()} reviews)</span>
+                        <span>👥 ${course.students.toLocaleString()} students</span>
+                        <span>⏱ ${course.duration}</span>
+                    `;
+                }
+                
+                // Set data attribute on enroll button
+                const enrollBtn = document.querySelector('.enroll-btn');
+                if (enrollBtn) {
+                    enrollBtn.setAttribute('data-course-id', course.id);
+                    enrollBtn.setAttribute('data-course-title', course.title);
+                }
+            }
+        } catch (error) {
+            console.error('Error loading course data:', error);
+        }
+    }
+
+    function setupEnrollmentButton() {
+        const enrollBtn = document.querySelector('.enroll-btn');
+        if (enrollBtn) {
+            enrollBtn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                
+                const courseId = this.getAttribute('data-course-id');
+                const courseTitle = this.getAttribute('data-course-title') || 
+                                   document.querySelector('.course-title').textContent;
+                
+                if (!courseId) {
+                    alert('Course information not available');
+                    return;
+                }
+                
+                if (confirm(`Enroll in "${courseTitle}"?`)) {
+                    try {
+                        await enrollmentService.enrollInCourse(courseId, courseTitle);
+                        
+                        alert(`Successfully enrolled in "${courseTitle}"! Check your dashboard.`);
+                        
+                        // Update button
+                        this.textContent = 'Enrolled';
+                        this.disabled = true;
+                        this.style.backgroundColor = '#28a745';
+                        
+                        // Redirect to dashboard after 1 second
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1000);
+                        
+                    } catch (error) {
+                        console.error('Enrollment error:', error);
+                        if (error.message.includes('Already enrolled')) {
+                            alert('You are already enrolled in this course!');
+                            this.textContent = 'Already Enrolled';
+                            this.disabled = true;
+                            this.style.backgroundColor = '#6c757d';
+                        } else {
+                            alert('Failed to enroll: ' + error.message);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    async function checkIfEnrolled() {
+        const enrollBtn = document.querySelector('.enroll-btn');
+        if (!enrollBtn) return;
+        
+        const courseId = enrollBtn.getAttribute('data-course-id');
+        if (!courseId) return;
+        
+        try {
+            const isEnrolled = await enrollmentService.isEnrolled(courseId);
+            if (isEnrolled) {
+                enrollBtn.textContent = 'Already Enrolled';
+                enrollBtn.disabled = true;
+                enrollBtn.style.backgroundColor = '#6c757d';
+            }
+        } catch (error) {
+            console.error('Error checking enrollment:', error);
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+    }
+    
+    // Expose functions globally
+    window.logout = logout;
+</script>
 </body>
 </html>

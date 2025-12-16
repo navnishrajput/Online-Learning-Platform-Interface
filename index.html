@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnHub - Online Learning Platform</title>
+   
     <style>
         * {
             margin: 0;
@@ -26,6 +26,7 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            
         }
         
         .container {
@@ -38,20 +39,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #04273f;
         }
         
-        .logo {
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 32px;
-        }
+       .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    width: 70px;
+    height: 70px;
+}
+
         
         nav ul {
             display: flex;
@@ -63,23 +66,23 @@
         }
         
         nav ul li a {
-            color: white;
+            color: rgb(252, 250, 250);
             text-decoration: none;
             padding: 8px 15px;
             border-radius: 4px;
-            transition: background-color 0.3s;
+           
         }
         
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            color: rgb(119, 234, 249)
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: url('assets/images/home.jpg');
             background-size: cover;
             background-position: center;
-            color: white;
+            color: #f8f9fa;
             padding: 100px 0;
             text-align: center;
         }
@@ -92,7 +95,7 @@
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            
         }
         
         .hero p {
@@ -109,7 +112,7 @@
             padding: 5px;
             max-width: 600px;
             margin: 0 auto;
-            display: flex;
+           
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
@@ -123,8 +126,8 @@
         }
         
         .search-btn {
-            background: #e74c3c;
-            color: white;
+            
+            color: rgb(40, 144, 200);
             border: none;
             border-radius: 50px;
             padding: 15px 30px;
@@ -135,7 +138,7 @@
         }
         
         .search-btn:hover {
-            background: #c0392b;
+            background: #19296d;
         }
         
         .hero-stats {
@@ -177,141 +180,139 @@
             margin: 15px auto;
             border-radius: 2px;
         }
-        
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-        
-        .category-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #3498db;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .category-icon {
-            font-size: 50px;
-            color: #3498db;
-            margin-bottom: 15px;
-        }
-        
-        .category-card h3 {
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        
-        .category-card p {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
+       .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    height: 260px;
+    border-radius: 18px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Dark overlay for text readability */
+.category-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+   
+}
+
+/* Text content */
+.overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: #fff;
+    z-index: 1;
+}
+
+.overlay h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.overlay p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+       
+      .category-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.category-card p {
+    font-size: 14px;
+    line-height: 1.4;
+}
         
         /* Featured Courses */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-        
-        .course-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .course-image {
-            height: 160px;
-            background: linear-gradient(45deg, #3498db, #2ecc71);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-image:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.1);
-        }
-        
-        .course-info {
-            padding: 20px;
-        }
-        
-        .course-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            font-size: 18px;
-            height: 50px;
-            overflow: hidden;
-        }
-        
-        .course-instructor {
-            color: #7f8c8d;
-            font-size: 14px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .instructor-icon {
-            margin-right: 5px;
-        }
-        
-        .course-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-        
-        .enroll-btn {
-            background-color: #2ecc71;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .enroll-btn:hover {
-            background-color: #27ae60;
-        }
-        
+      .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive columns */
+    gap: 25px; /* equal spacing between cards */
+    margin-bottom: 60px;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* make all cards same height */
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.course-image {
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.course-card:hover .course-image img {
+    transform: scale(1.05);
+}
+
+.course-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* ensures all cards stretch equally */
+    justify-content: space-between; /* space out info and button */
+}
+.enroll-btn {
+    background-color: #12295e;   /* button color (orange) */
+    color: white;
+    border: none;
+    padding: 14px 20px;          /* increases button size */
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;             /* bigger text */
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.enroll-btn:hover {
+    background-color: #24b8cb;   /* darker on hover */
+    transform: scale(1.03);      /* slight zoom effect */
+}
+
+
         /* Footer */
         footer {
-            background-color: #2c3e50;
+             background: linear-gradient(135deg, #3498db, #2c3e50);
             color: white;
             padding: 50px 0 20px;
         }
@@ -331,7 +332,7 @@
         
         .footer-section h3 {
             margin-bottom: 20px;
-            color: #3498db;
+            color: #04273f;
         }
         
         .footer-links {
@@ -429,7 +430,7 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <span class="logo-icon">📚</span>
+              <img src="assets/images/logo.jpeg" alt="LearnHub Logo" class="logo-icon">
                 LearnHub
             </div>
             <nav>
@@ -438,7 +439,8 @@
                     <li><a href="course-detail.html">Courses</a></li>
                     <li><a href="instructor-profile.html">Instructors</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="enrollment-form.html">Enroll</a></li>
+                     <li><a href="contact-us.html">Contact Us</a></li>
+                    <!-- <li><a href="enrollment-form.html">Enroll</a> -->
                 </ul>
             </nav>
         </div>
@@ -447,25 +449,26 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>शिक्षा से समृद्धि तक</h1>
-            <h1>(From Education to Prosperity)</h1>
-            <p>Discover your potential with India's leading online learning platform. Learn from expert instructors and advance your career.</p>
-            <div class="search-container">
-                <input type="text" class="search-box" placeholder="What would you like to learn today?">
-                <button class="search-btn">Search Courses</button>
+            <h1>ONLINE EDUCATION</h1>
+            <h2>Got Talent? Meet Opportunity </h2>
+            <h1>Feels like Real Classroom ;)</h1>
+            <p><b>start your favourite course</b></p>
+            
+               
+                <button class="search-btn">Register Now</button>
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Courses</div>
+                    <div class="stat-number"></div>
+                    <div class="stat-label"></div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">Students</div>
+                    <div class="stat-number"></div>
+                    <div class="stat-label"></div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">200+</div>
-                    <div class="stat-label">Instructors</div>
+                    <div class="stat-number"></div>
+                    <div class="stat-label"></div>
                 </div>
             </div>
         </div>
@@ -474,135 +477,202 @@
     <!-- Categories Section -->
     <section class="container">
         <h2 class="section-title">Explore Learning Categories</h2>
-        <div class="categories-grid">
-            <div class="category-card">
-                <div class="category-icon">💻</div>
-                <h3>Technology & Programming</h3>
-                <p>Web Development, Data Science, AI, Mobile Apps</p>
-            </div>
-            <div class="category-card">
-                <div class="category-icon">📊</div>
-                <h3>Business & Management</h3>
-                <p>Marketing, Finance, Entrepreneurship, Leadership</p>
-            </div>
-            <div class="category-card">
-                <div class="category-icon">🎨</div>
-                <h3>Creative Arts</h3>
-                <p>Graphic Design, Photography, Video Editing, Music</p>
-            </div>
-            <div class="category-card">
-                <div class="category-icon">🔬</div>
-                <h3>Science & Engineering</h3>
-                <p>Mathematics, Physics, Electronics, Civil Engineering</p>
-            </div>
-            <div class="category-card">
-                <div class="category-icon">🗣️</div>
-                <h3>Languages & Communication</h3>
-                <p>English, Hindi, Public Speaking, Creative Writing</p>
-            </div>
-            <div class="category-card">
-                <div class="category-icon">🧘</div>
-                <h3>Health & Wellness</h3>
-                <p>Yoga, Nutrition, Mental Health, Fitness</p>
-            </div>
+      <div class="categories-grid">
+   <div class="categories-grid">
+    <div class="category-card" style="background-image: url('assets/images/tech.jpg');">
+        <div class="card-content">
+           
         </div>
+    </div>
+
+    <div class="category-card" style="background-image: url('assets/images/buissness.jpg');">
+        <div class="card-content">
+          
+        </div>
+    </div>
+
+    <div class="category-card" style="background-image: url('assets/images/art.jpg');">
+        <div class="card-content">
+           
+        </div>
+    </div>
+
+    <div class="category-card" style="background-image: url('assets/images/science.jpg');">
+        <div class="card-content">
+          
+        </div>
+    </div>
+
+    <div class="category-card" style="background-image: url('assets/images/lang.jpg');">
+        <div class="card-content">
+         
+        </div>
+    </div>
+
+    <div class="category-card" style="background-image: url('assets/images/yoga.jpg');">
+        <div class="card-content">
+           
+        </div>
+    </div>
+</div>
+
+</div>
+
     </section>
 
     <!-- Featured Courses -->
     <section class="container">
-        <h2 class="section-title">Featured Courses</h2>
-        <div class="courses-grid">
-            <div class="course-card">
-                <div class="course-image">Full Stack Web Development</div>
-                <div class="course-info">
-                    <div class="course-title">Complete Web Development with MERN Stack</div>
-                    <div class="course-instructor">
-                        <span class="instructor-icon">👨‍🏫</span>
-                        By Rajesh Kumar
-                    </div>
-                    <div class="course-meta">
-                        <span>⭐ 4.8 (2,450 reviews)</span>
-                        <span>⏱️ 48 hours</span>
-                    </div>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            <div class="course-card">
-                <div class="course-image">Data Science</div>
-                <div class="course-info">
-                    <div class="course-title">Python for Data Science & Machine Learning</div>
-                    <div class="course-instructor">
-                        <span class="instructor-icon">👩‍🏫</span>
-                        By Priya Sharma
-                    </div>
-                    <div class="course-meta">
-                        <span>⭐ 4.7 (1,890 reviews)</span>
-                        <span>⏱️ 42 hours</span>
-                    </div>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            <div class="course-card">
-                <div class="course-image">Digital Marketing</div>
-                <div class="course-info">
-                    <div class="course-title">Digital Marketing Mastery - SEO, Social Media, Ads</div>
-                    <div class="course-instructor">
-                        <span class="instructor-icon">👨‍🏫</span>
-                        By Amit Patel
-                    </div>
-                    <div class="course-meta">
-                        <span>⭐ 4.6 (1,560 reviews)</span>
-                        <span>⏱️ 36 hours</span>
-                    </div>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            <div class="course-card">
-                <div class="course-image">Mobile Development</div>
-                <div class="course-info">
-                    <div class="course-title">Android App Development with Kotlin</div>
-                    <div class="course-instructor">
-                        <span class="instructor-icon">👩‍🏫</span>
-                        By Anjali Singh
-                    </div>
-                    <div class="course-meta">
-                        <span>⭐ 4.5 (1,230 reviews)</span>
-                        <span>⏱️ 40 hours</span>
-                    </div>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            <div class="course-card">
-                <div class="course-image">Finance</div>
-                <div class="course-info">
-                    <div class="course-title">Stock Market Investing & Financial Planning</div>
-                    <div class="course-instructor">
-                        <span class="instructor-icon">👨‍🏫</span>
-                        By Vikram Mehta
-                    </div>
-                    <div class="course-meta">
-                        <span>⭐ 4.8 (980 reviews)</span>
-                        <span>⏱️ 30 hours</span>
-                    </div>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            <div class="course-card">
-                <div class="course-image">Yoga & Wellness</div>
-                <div class="course-info">
-                    <div class="course-title">Yoga for Beginners - Mind & Body Wellness</div>
-                    <div class="course-instructor">
-                        <span class="instructor-icon">👩‍🏫</span>
-                        By Divya Nair
-                    </div>
-                    <div class="course-meta">
-                        <span>⭐ 4.9 (1,750 reviews)</span>
-                        <span>⏱️ 24 hours</span>
-                    </div>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
+      <h2 class="section-title">Featured Courses</h2>
+<div class="courses-grid">
+    <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/wellness.jpg" alt="Full Stack Web Development">
         </div>
+        <div class="course-info">
+            <div class="course-title">Health and Wellness</div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Rajesh Kumar
+            </div>
+            <div class="course-meta">
+                <span>⭐ 4.8 (2,450 reviews)</span>
+               <br> <span>⏱️ 48 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+     <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/finance.jpg" alt="Full Stack Web Development">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Finance and Trade</div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Sunil Kumar
+            </div>
+            <div class="course-meta">
+                <span>⭐ 4.9 (3,450 reviews)</span>
+                <br>  <span>⏱️ 48 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+     <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/digitalm.jpg" alt="Full Stack Web Development">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Complete Digital Markting </div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Rakha Gupta
+            </div>
+            <div class="course-meta">
+                <span>⭐ 3.8 (2,550 reviews)</span>
+              <br>    <span>⏱️ 48 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+     <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/hey.jpg" alt="Full Stack Web Development">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Complete Web Development with MERN Stack</div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Vikas chaudhary
+            </div>
+            <div class="course-meta">
+                <span>⭐ 4.8 (4,450 reviews)</span>
+              <br>    <span>⏱️ 48 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+     <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/digital.jpg" alt="Full Stack Web Development">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Complete Mobile Development </div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Nancy Sharma 
+            </div>
+            <div class="course-meta">
+                <span>⭐ 3.8 (2,440 reviews)</span>
+             <br>     <span>⏱️ 48 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+     <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/pexels-karola-g-7693022.jpg" alt="Full Stack Web Development">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Modern Art</div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Amit Dua
+            </div>
+            <div class="course-meta">
+                <span>⭐ 4.4 (3,450 reviews)</span>
+              <br>    <span>⏱️ 48 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+    
+
+    <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/web.jpg" alt="Data Science">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Python for Data Science & Machine Learning</div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👩‍🏫</span>
+                By Priya Sharma
+            </div>
+            <div class="course-meta">
+                <span>⭐ 4.7 (1,890 reviews)</span>
+               <br>   <span>⏱️ 42 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+    <div class="course-card">
+        <div class="course-image">
+            <img src="assets/images/pexels-goumbik-669610.jpg" alt="Digital Marketing">
+        </div>
+        <div class="course-info">
+            <div class="course-title">Buisness Management</div>
+            <div class="course-instructor">
+                <span class="instructor-icon">👨‍🏫</span>
+                By Amit Patel
+            </div>
+            <div class="course-meta">
+                <span>⭐ 4.6 (1,560 reviews)</span>
+              <br>    <span>⏱️ 36 hours</span>
+            </div>
+            <button class="enroll-btn">Enroll Now</button>
+        </div>
+    </div>
+
+    <!-- Repeat for other courses, changing the image src and info -->
+</div>
+
     </section>
 
     <!-- Footer -->
@@ -619,7 +689,8 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="course-detail.html">Browse Courses</a></li>
                         <li><a href="instructor-profile.html">Our Instructors</a></li>
-                        <li><a href="enrollment-form.html">Enroll Now</a></li>
+                       <li><a href="contact-us.html">Contact Us</a></li>
+                        <!-- <li><a href="enrollment-form.html">Enroll Now</a></li> -->
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -643,5 +714,246 @@
             </div>
         </div>
     </footer>
+  <script src="enrollment-service.js"></script>
+<script>
+    // Initialize enrollment service
+    document.addEventListener('DOMContentLoaded', () => {
+        // Update navigation based on auth state
+        updateNavigation();
+        
+        // Setup enrollment buttons
+        setupEnrollmentButtons();
+        
+        // Update hero button
+        setupHeroButton();
+        
+        // Load courses from API and update UI
+        loadCoursesFromAPI();
+    });
+
+    // Function to update navigation
+    function updateNavigation() {
+        const nav = document.querySelector('nav ul');
+        if (!nav) return;
+        
+        const user = enrollmentService.getCurrentUser();
+        
+        if (user) {
+            nav.innerHTML = `
+                <li><a href="index.html">Home</a></li>
+                <li><a href="course-detail.html">Courses</a></li>
+                <li><a href="instructor-profile.html">Instructors</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+               <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="#" onclick="logout()" style="color: #ff6b6b;">Logout</a></li>
+            `;
+        } else {
+            nav.innerHTML = `
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            `;
+        }
+    }
+
+    // Function to load courses from API
+    async function loadCoursesFromAPI() {
+        try {
+            const courses = await enrollmentService.getAllCourses();
+            if (courses.length > 0) {
+                updateCourseCards(courses);
+            }
+        } catch (error) {
+            console.error('Failed to load courses:', error);
+        }
+    }
+
+    // Function to update course cards with API data
+    function updateCourseCards(courses) {
+        const courseGrid = document.querySelector('.courses-grid');
+        if (!courseGrid) return;
+        
+        // Clear existing cards (keep first few for demo)
+        const existingCards = courseGrid.querySelectorAll('.course-card');
+        if (existingCards.length > courses.length) {
+            for (let i = courses.length; i < existingCards.length; i++) {
+                existingCards[i].remove();
+            }
+        }
+        
+        // Update existing cards with API data
+        existingCards.forEach((card, index) => {
+            if (courses[index]) {
+                const course = courses[index];
+                
+                // Update image
+                const img = card.querySelector('.course-image img');
+                if (img && course.image) {
+                    img.src = course.image;
+                    img.alt = course.title;
+                }
+                
+                // Update title
+                const title = card.querySelector('.course-title');
+                if (title) {
+                    title.textContent = course.title;
+                }
+                
+                // Update instructor
+                const instructor = card.querySelector('.course-instructor');
+                if (instructor) {
+                    const iconSpan = instructor.querySelector('.instructor-icon');
+                    instructor.innerHTML = `${iconSpan ? iconSpan.outerHTML : ''} By ${course.instructor}`;
+                }
+                
+                // Update meta
+                const meta = card.querySelector('.course-meta');
+                if (meta) {
+                    meta.innerHTML = `
+                        <span>⭐ ${course.rating} (${course.students.toLocaleString()} reviews)</span>
+                        <br><span>⏱️ ${course.duration}</span>
+                    `;
+                }
+                
+                // Update enroll button
+                const enrollBtn = card.querySelector('.enroll-btn');
+                if (enrollBtn) {
+                    enrollBtn.setAttribute('data-course-id', course.id);
+                    enrollBtn.setAttribute('data-course-title', course.title);
+                    enrollBtn.textContent = 'Enroll Now';
+                }
+            }
+        });
+    }
+
+    // Function to setup enrollment buttons
+    function setupEnrollmentButtons() {
+        document.addEventListener('click', async function(e) {
+            if (e.target.classList.contains('enroll-btn')) {
+                e.preventDefault();
+                
+                const courseId = e.target.getAttribute('data-course-id');
+                const courseTitle = e.target.getAttribute('data-course-title') || 
+                                   e.target.closest('.course-card').querySelector('.course-title')?.textContent;
+                
+                if (!courseId && !courseTitle) {
+                    alert('Course information not found');
+                    return;
+                }
+                
+                // Check authentication
+                if (!enrollmentService.isAuthenticated()) {
+                    if (confirm('You need to login to enroll. Go to login page?')) {
+                        window.location.href = 'login.html';
+                    }
+                    return;
+                }
+                
+                // Confirm enrollment
+                if (confirm(`Enroll in "${courseTitle}"?`)) {
+                    try {
+                        // If we have courseId, use it, otherwise find by title
+                        let actualCourseId = courseId;
+                        if (!actualCourseId) {
+                            const course = await enrollmentService.getCourseByTitle(courseTitle);
+                            if (!course) {
+                                alert('Course not found in database');
+                                return;
+                            }
+                            actualCourseId = course.id;
+                        }
+                        
+                        // Enroll in course
+                        await enrollmentService.enrollInCourse(actualCourseId, courseTitle);
+                        
+                        alert(`Successfully enrolled in "${courseTitle}"! Check your dashboard.`);
+                        
+                        // Update button text
+                        e.target.textContent = 'Enrolled';
+                        e.target.disabled = true;
+                        e.target.style.backgroundColor = '#28a745';
+                        
+                        // Redirect to dashboard after 1 second
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1000);
+                        
+                    } catch (error) {
+                        console.error('Enrollment error:', error);
+                        if (error.message.includes('Already enrolled')) {
+                            alert('You are already enrolled in this course!');
+                            e.target.textContent = 'Already Enrolled';
+                            e.target.disabled = true;
+                            e.target.style.backgroundColor = '#6c757d';
+                        } else {
+                            alert('Failed to enroll: ' + error.message);
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Check enrollment status for buttons
+        checkEnrollmentStatus();
+    }
+
+    // Function to check enrollment status
+    async function checkEnrollmentStatus() {
+        if (!enrollmentService.isAuthenticated()) return;
+        
+        try {
+            const enrollments = await enrollmentService.getUserEnrollments();
+            const enrollButtons = document.querySelectorAll('.enroll-btn');
+            
+            enrollButtons.forEach(button => {
+                const courseId = button.getAttribute('data-course-id');
+                const courseTitle = button.getAttribute('data-course-title') || 
+                                  button.closest('.course-card').querySelector('.course-title')?.textContent;
+                
+                if (courseId || courseTitle) {
+                    const isEnrolled = enrollments.some(enrollment => 
+                        enrollment.courseId === courseId || 
+                        enrollment.courseTitle === courseTitle
+                    );
+                    
+                    if (isEnrolled) {
+                        button.textContent = 'Already Enrolled';
+                        button.disabled = true;
+                        button.style.backgroundColor = '#6c757d';
+                    }
+                }
+            });
+        } catch (error) {
+            console.error('Error checking enrollment status:', error);
+        }
+    }
+
+    // Function to setup hero button
+    function setupHeroButton() {
+        const registerBtn = document.querySelector('.search-btn');
+        if (registerBtn) {
+            if (enrollmentService.isAuthenticated()) {
+                registerBtn.textContent = 'Browse Courses';
+                registerBtn.onclick = () => {
+                    window.location.href = 'course-detail.html';
+                };
+            } else {
+                registerBtn.textContent = 'Get Started - Join Now';
+                registerBtn.onclick = () => {
+                    window.location.href = 'signup.html';
+                };
+            }
+        }
+    }
+
+    // Function to handle logout
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+    }
+
+    // Expose logout function globally
+    window.logout = logout;
+</script>
 </body>
 </html>

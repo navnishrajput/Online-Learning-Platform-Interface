@@ -1,0 +1,29 @@
+{
+  "name": "learnhub-auth",
+  "version": "1.0.0",
+  "description": "LearnHub - Online Learning Platform with Authentication",
+  "main": "auth.js",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3001",
+    "server-delay": "json-server --watch db.json --port 3001 --delay 1000",
+    "test-contact": "node -e \"const fs = require('fs'); const db = JSON.parse(fs.readFileSync('db.json', 'utf8')); console.log('Contacts in db:', db.contacts);\"",
+    "test-api": "node -e \"fetch('http://localhost:3001/users').then(r => r.json()).then(d => console.log('Users:', d)).catch(e => console.error('API Error:', e))\"",
+    "start": "echo 'Starting JSON Server...' && npm run server",
+    "dev": "npm run server",
+    "reset-db": "node -e \"const fs = require('fs'); const defaultDB = { users: [], contacts: [], enrollments: [], courses: [] }; fs.writeFileSync('db.json', JSON.stringify(defaultDB, null, 2)); console.log('Database reset to empty state')\"",
+    "backup-db": "node -e \"const fs = require('fs'); const date = new Date().toISOString().split('T')[0]; fs.copyFileSync('db.json', 'db-backup-' + date + '.json'); console.log('Database backed up')\""
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "education",
+    "learning",
+    "courses",
+    "authentication",
+    "online-learning"
+  ],
+  "author": "LearnHub Team",
+  "license": "ISC"
+}

@@ -1,0 +1,210 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "9876543210",
+      "subject": "Course Inquiry",
+      "message": "I would like to know more about the web development course.",
+      "submittedAt": "2024-01-25T10:30:00Z",
+      "status": "new"
+    },
+    {
+      "name": "Navnish Rajput",
+      "email": "rforptanhi@gmail.com",
+      "phone": "07900080525",
+      "subject": "Technical Support",
+      "message": "cx",
+      "submittedAt": "2025-12-14T06:23:30.255Z",
+      "status": "new",
+      "id": "ByUKHTr"
+    },
+    {
+      "name": "Navnish Rajput",
+      "email": "rforptanhi@gmail.com",
+      "phone": "07900080525",
+      "subject": "Technical Support",
+      "message": "cx",
+      "submittedAt": "2025-12-14T06:23:30.294Z",
+      "status": "new",
+      "id": "_9zWdAL"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Sarah Johnson",
+      "email": "sarah@example.com",
+      "password": "password123",
+      "createdAt": "2024-01-15T10:30:00Z",
+      "avatarInitials": "SJ"
+    },
+    {
+      "name": "Navnish Rajput",
+      "email": "rforptanhi@gmail.com",
+      "password": "demo-hash-5a55c8e0",
+      "createdAt": "2025-12-14T05:23:27.197Z",
+      "avatarInitials": "NR",
+      "id": "xVpPZsS"
+    },
+    {
+      "name": "Navnish Rajput",
+      "email": "rforptanhi@gmail.com1",
+      "password": "demo-hash-5a55c8e0",
+      "createdAt": "2025-12-14T05:51:26.572Z",
+      "avatarInitials": "NR",
+      "id": "VYhjvVi"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "1",
+      "userId": "1",
+      "courseId": "web-dev-bootcamp",
+      "courseTitle": "Complete Web Development Bootcamp",
+      "enrolledAt": "2024-01-20T14:25:00Z",
+      "progress": 30,
+      "status": "In Progress"
+    },
+    {
+      "userId": "xVpPZsS",
+      "courseId": "web-dev-bootcamp",
+      "courseTitle": "Complete Web Development Bootcamp",
+      "enrolledAt": "2025-12-14T05:23:47.374Z",
+      "progress": 0,
+      "status": "In Progress",
+      "id": "NL1iyTf"
+    },
+    {
+      "userId": "1",
+      "courseId": "python-data-science",
+      "courseTitle": "Python for Data Science & Machine Learning",
+      "enrolledAt": "2025-12-14T05:28:41.210Z",
+      "progress": 0,
+      "status": "In Progress",
+      "id": "kp-nNrW"
+    },
+    {
+      "userId": "xVpPZsS",
+      "courseId": "python-data-science",
+      "courseTitle": "Python for Data Science & Machine Learning",
+      "enrolledAt": "2025-12-16T13:22:27.799Z",
+      "progress": 0,
+      "status": "In Progress",
+      "id": "4_MJ5rI"
+    }
+  ],
+  "courses": [
+    {
+      "id": "web-dev-bootcamp",
+      "title": "Complete Web Development Bootcamp",
+      "instructor": "Rajesh Kumar",
+      "rating": 4.8,
+      "students": 12450,
+      "duration": "48 hours",
+      "category": "Technology",
+      "description": "Learn modern web development from basics to advanced — HTML, CSS, JavaScript, React, Node.js, and more with hands-on projects.",
+      "image": "assets/images/web.jpg"
+    },
+    {
+      "id": "python-data-science",
+      "title": "Python for Data Science & Machine Learning",
+      "instructor": "Priya Sharma",
+      "rating": 4.7,
+      "students": 9450,
+      "duration": "42 hours",
+      "category": "Data Science",
+      "description": "Master Python, data analysis, and machine learning algorithms for real-world applications.",
+      "image": "assets/images/pexels-goumbik-669610.jpg"
+    },
+    {
+      "id": "ui-ux-fundamentals",
+      "title": "UI/UX Design Fundamentals",
+      "instructor": "Anjali Singh",
+      "rating": 4.6,
+      "students": 6210,
+      "duration": "36 hours",
+      "category": "Design",
+      "description": "Learn user interface and user experience design principles with practical projects.",
+      "image": "assets/images/art.jpg"
+    },
+    {
+      "id": "digital-marketing",
+      "title": "Complete Digital Marketing",
+      "instructor": "Rakha Gupta",
+      "rating": 3.8,
+      "students": 2550,
+      "duration": "48 hours",
+      "category": "Marketing",
+      "description": "Master digital marketing strategies, SEO, social media marketing, and analytics.",
+      "image": "assets/images/digitalm.jpg"
+    },
+    {
+      "id": "finance-trade",
+      "title": "Finance and Trade",
+      "instructor": "Sunil Kumar",
+      "rating": 4.9,
+      "students": 3450,
+      "duration": "48 hours",
+      "category": "Finance",
+      "description": "Learn financial management, trading strategies, and investment principles.",
+      "image": "assets/images/finance.jpg"
+    },
+    {
+      "id": "health-wellness",
+      "title": "Health and Wellness",
+      "instructor": "Rajesh Kumar",
+      "rating": 4.8,
+      "students": 2450,
+      "duration": "48 hours",
+      "category": "Health",
+      "description": "Comprehensive guide to health, wellness, and fitness management.",
+      "image": "assets/images/wellness.jpg"
+    },
+    {
+      "id": "mern-stack",
+      "title": "Complete Web Development with MERN Stack",
+      "instructor": "Vikas chaudhary",
+      "rating": 4.8,
+      "students": 4450,
+      "duration": "48 hours",
+      "category": "Technology",
+      "description": "Master MongoDB, Express, React, and Node.js for full-stack development.",
+      "image": "assets/images/hey.jpg"
+    },
+    {
+      "id": "mobile-dev",
+      "title": "Complete Mobile Development",
+      "instructor": "Nancy Sharma",
+      "rating": 3.8,
+      "students": 2440,
+      "duration": "48 hours",
+      "category": "Technology",
+      "description": "Build native and cross-platform mobile applications.",
+      "image": "assets/images/digital.jpg"
+    },
+    {
+      "id": "modern-art",
+      "title": "Modern Art",
+      "instructor": "Amit Dua",
+      "rating": 4.4,
+      "students": 3450,
+      "duration": "48 hours",
+      "category": "Arts",
+      "description": "Explore contemporary art techniques and creative expression.",
+      "image": "assets/images/pexels-karola-g-7693022.jpg"
+    },
+    {
+      "id": "business-management",
+      "title": "Business Management",
+      "instructor": "Amit Patel",
+      "rating": 4.6,
+      "students": 1560,
+      "duration": "36 hours",
+      "category": "Business",
+      "description": "Learn essential business management skills and strategies.",
+      "image": "assets/images/pexels-goumbik-669610.jpg"
+    }
+  ]
+}

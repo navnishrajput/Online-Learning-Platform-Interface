@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@learnhub.com",
+      "password": "admin123"
+    },
+    {
+      "id": "2",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "test123"
+    },
+    {
+      "id": "ebc6",
+      "name": "Navnish Rajput",
+      "email": "rforptanhi@gmail.com",
+      "password": "123123"
+    }
+  ]
+}

@@ -21,11 +21,12 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            color: #0a1b4f;
         }
         
         
         header {
-            background-color: #3498db;
+              background: linear-gradient(135deg, #3498db, #2c3e50);
             padding: 15px 0;
         }
         
@@ -36,10 +37,17 @@
         }
         
         .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+                .logo-icon {
+                    width: 70px;
+                    height: 70px;
+                }
         
         nav ul {
             display: flex;
@@ -55,7 +63,9 @@
             text-decoration: none;
             padding: 5px 10px;
         }
-        
+        nav ul li a:hover {
+            color: rgb(177, 242, 249);
+        }
         
         .dashboard-header {
             background-color: white;
@@ -154,13 +164,16 @@
         }
         
         .continue-btn {
-            background-color: #3498db;
+            background-color: #072d47;
             color: white;
             border: none;
             padding: 5px 10px;
             border-radius: 3px;
             cursor: pointer;
             font-size: 12px;
+        }
+        .continue-btn:hover {
+           background-color: skyblue;
         }
         
         /* Calendar */
@@ -223,7 +236,7 @@
         }
         
         .action-btn {
-            background-color: #3498db;
+            background-color: #062d47;
             color: white;
             border: none;
             padding: 10px;
@@ -231,7 +244,10 @@
             cursor: pointer;
             text-align: center;
         }
-        
+
+         .action-btn:hover {
+            background-color: skyblue;
+         }
         /* Stats */
         .stats-grid {
             display: grid;
@@ -261,7 +277,7 @@
         
         /* Footer */
         footer {
-            background-color: #34495e;
+              background: linear-gradient(135deg, #3498db, #2c3e50);
             color: white;
             padding: 30px 0;
             text-align: center;
@@ -294,14 +310,15 @@
 
     <header>
         <div class="nav-details">
-            <div class="logo">LearnHub</div>
+            <div class="logo"><img src="assets/images/logo.jpeg" alt="logooo" class="logo-icon">LearnHub</div>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="course-detail.html">Courses</a></li>
                     <li><a href="instructor-profile.html">Instructors</a></li>
                     <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="enrollment-form.html">Enroll</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <!-- <li><a href="enrollment-form.html">Enroll</a></li> -->
                 </ul>
             </nav>
         </div>
@@ -502,5 +519,180 @@
             <p>Contact: info66@learnhub.com | +91 9888782970</p>
         </div>
     </footer>
+  <script src="enrollment-service.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Check authentication
+        const user = enrollmentService.getCurrentUser();
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        // Update UI with user data
+        updateUserInfo(user);
+        
+        // Update navigation
+        updateNavigation();
+        
+        // Load user enrollments
+        await loadUserEnrollments(user.id);
+        
+        // Load enrollment statistics
+        await loadEnrollmentStats();
+    });
+
+    function updateUserInfo(user) {
+        // Update welcome message
+        const welcomeMessage = document.querySelector('.welcome-message h1');
+        if (welcomeMessage) {
+            welcomeMessage.textContent = `Welcome back, ${user.name.split(' ')[0]}!`;
+        }
+        
+        // Update profile picture
+        const profilePic = document.querySelector('.profile-pic');
+        if (profilePic) {
+            profilePic.textContent = user.avatarInitials || user.name.charAt(0).toUpperCase();
+        }
+    }
+
+    function updateNavigation() {
+        const nav = document.querySelector('nav ul');
+        if (!nav) return;
+        
+        nav.innerHTML = `
+            <li><a href="index.html">Home</a></li>
+            <li><a href="course-detail.html">Courses</a></li>
+            <li><a href="instructor-profile.html">Instructors</a></li>
+            <li><a href="dashboard.html" style="color: #77eaf9;">Dashboard</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="#" onclick="logout()" style="color: #ff6b6b;">Logout</a></li>
+        `;
+    }
+
+    async function loadUserEnrollments(userId) {
+        try {
+            const enrollments = await enrollmentService.getUserEnrollments(userId);
+            displayEnrollments(enrollments);
+        } catch (error) {
+            console.error('Error loading enrollments:', error);
+            displayErrorMessage('Failed to load your courses');
+        }
+    }
+
+    function displayEnrollments(enrollments) {
+        const container = document.querySelector('.progress-items-container') || 
+                         document.querySelector('.card:has(.card-title:contains("My Courses"))');
+        
+        if (!container) {
+            // Create container if it doesn't exist
+            const myCoursesCard = document.querySelector('.card:has(.card-title)');
+            if (myCoursesCard) {
+                const container = document.createElement('div');
+                container.className = 'progress-items-container';
+                myCoursesCard.appendChild(container);
+            }
+            return;
+        }
+        
+        if (enrollments.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #666;">
+                    <p>You haven't enrolled in any courses yet.</p>
+                    <button onclick="window.location.href='course-detail.html'" 
+                            style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                        Browse Courses
+                    </button>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        enrollments.forEach(enrollment => {
+            html += `
+                <div class="progress-item">
+                    <div class="progress-icon">💻</div>
+                    <div class="progress-info">
+                        <div>${enrollment.courseTitle}</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${enrollment.progress}%"></div>
+                        </div>
+                        <div>${enrollment.progress}% Complete • ${enrollment.status}</div>
+                    </div>
+                    <button class="continue-btn" onclick="continueCourse('${enrollment.courseId}')">
+                        ${enrollment.progress === 0 ? 'Start' : 'Continue'}
+                    </button>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+    }
+
+    async function loadEnrollmentStats() {
+        try {
+            const stats = await enrollmentService.getEnrollmentStats();
+            if (stats) {
+                updateStatsDisplay(stats);
+            }
+        } catch (error) {
+            console.error('Error loading stats:', error);
+        }
+    }
+
+    function updateStatsDisplay(stats) {
+        // Update course count
+        const courseCountElement = document.querySelector('.stat-number:nth-child(1)');
+        if (courseCountElement) {
+            courseCountElement.textContent = stats.totalCourses;
+        }
+        
+        // Update hours (estimate 4 hours per course)
+        const hoursElement = document.querySelector('.stat-number:nth-child(2)');
+        if (hoursElement) {
+            hoursElement.textContent = stats.totalCourses * 4;
+        }
+        
+        // Update certificates (completed courses)
+        const certificatesElement = document.querySelector('.stat-number:nth-child(3)');
+        if (certificatesElement) {
+            certificatesElement.textContent = stats.completedCourses;
+        }
+    }
+
+    function continueCourse(courseId) {
+        window.location.href = `course-detail.html?course=${courseId}`;
+    }
+
+    function displayErrorMessage(message) {
+        const container = document.querySelector('.dashboard-grid');
+        if (container) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = `
+                background: #f8d7da;
+                color: #721c24;
+                padding: 15px;
+                border-radius: 5px;
+                margin: 10px;
+                text-align: center;
+            `;
+            errorDiv.textContent = message;
+            container.prepend(errorDiv);
+            
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+    }
+    
+    // Expose functions globally
+    window.continueCourse = continueCourse;
+    window.logout = logout;
+</script>
 </body>
 </html>
